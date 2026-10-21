@@ -1,0 +1,309 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+/* ========================================
+   AX Panel — Premium Design System (Tailwind v4)
+   ======================================== */
+
+@theme {
+    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /* === Primary: Púrpura Acento === */
+    --color-ax-50: #f3f1ff;
+    --color-ax-100: #ebe5ff;
+    --color-ax-200: #d9d0ff;
+    --color-ax-300: #bfb0ff;
+    --color-ax-400: #a29bfe;
+    --color-ax-500: #6c5ce7;
+    --color-ax-600: #5a45d9;
+    --color-ax-700: #4c36bf;
+    --color-ax-800: #3f2d9c;
+    --color-ax-900: #352880;
+
+    /* === Navy Structure === */
+    --color-navy-50: #eef1f8;
+    --color-navy-100: #d5dbed;
+    --color-navy-200: #a8b4d4;
+    --color-navy-300: #7b8dbb;
+    --color-navy-400: #4e66a2;
+    --color-navy-500: #2d4a7c;
+    --color-navy-600: #1e3a5f;
+    --color-navy-700: #16213e;
+    --color-navy-800: #1a1a2e;
+    --color-navy-900: #0f0f1e;
+
+    /* === Pastel Vibrantes (Módulos / Materias) === */
+    --color-mint-100: #d1fae5;
+    --color-mint-500: #10b981;
+    --color-mint-700: #047857;
+
+    --color-amber-100: #fef3c7;
+    --color-amber-500: #f59e0b;
+    --color-amber-700: #b45309;
+
+    --color-sky-100: #e0f2fe;
+    --color-sky-500: #0ea5e9;
+    --color-sky-700: #0369a1;
+
+    --color-rose-100: #ffe4e6;
+    --color-rose-500: #f43f5e;
+    --color-rose-700: #be123c;
+
+    --color-coral-100: #ffedd5;
+    --color-coral-500: #f97316;
+    --color-coral-700: #c2410c;
+
+    --color-teal-100: #ccfbf1;
+    --color-teal-500: #14b8a6;
+    --color-teal-700: #0f766e;
+
+    --color-violet-100: #ede9fe;
+    --color-violet-500: #8b5cf6;
+    --color-violet-700: #6d28d9;
+
+    --color-pink-100: #fce7f3;
+    --color-pink-500: #ec4899;
+    --color-pink-700: #be185d;
+
+    /* === Shadows === */
+    --shadow-soft: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-card: 0 4px 16px rgba(0,0,0,0.06);
+    --shadow-elevated: 0 10px 30px rgba(0,0,0,0.1);
+    --shadow-glow-purple: 0 4px 20px rgba(108,92,231,0.35);
+}
+
+/* === Base Resets === */
+@layer base {
+    *, *::before, *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+    }
+    body {
+        font-family: var(--font-sans);
+        background: #f4f6fb;
+        color: #1e293b;
+        min-height: 100vh;
+    }
+}
+
+/* === Subject Color Palette (10 colores para materias) === */
+@layer utilities {
+    .subject-blue    { --sbg: #dbeafe; --sborder: #3b82f6; --stext: #1e40af; }
+    .subject-rose    { --sbg: #ffe4e6; --sborder: #f43f5e; --stext: #9f1239; }
+    .subject-mint    { --sbg: #d1fae5; --sborder: #10b981; --stext: #065f46; }
+    .subject-amber   { --sbg: #fef3c7; --sborder: #f59e0b; --stext: #92400e; }
+    .subject-violet  { --sbg: #ede9fe; --sborder: #8b5cf6; --stext: #5b21b6; }
+    .subject-sky     { --sbg: #e0f2fe; --sborder: #0ea5e9; --stext: #075985; }
+    .subject-coral   { --sbg: #ffedd5; --sborder: #f97316; --stext: #9a3412; }
+    .subject-pink    { --sbg: #fce7f3; --sborder: #ec4899; --stext: #9d174d; }
+    .subject-teal    { --sbg: #ccfbf1; --sborder: #14b8a6; --stext: #134e4a; }
+    .subject-indigo  { --sbg: #e0e7ff; --sborder: #6366f1; --stext: #3730a3; }
+
+    .subject-card {
+        background: var(--sbg);
+        border-left: 4px solid var(--sborder);
+        color: var(--stext);
+    }
+}
+
+/* === Scrollbar styling === */
+@layer base {
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #c4b5fd; border-radius: 999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #a78bfa; }
+}
+
+/* === Animations === */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-soft {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .7; }
+}
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.4s ease-out both;
+}
+.animate-slide-down {
+    animation: slideDown 0.3s ease-out both;
+}
+
+/* Stagger children */
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger-children > *:nth-child(8) { animation-delay: 0.4s; }
+
+/* === Timetable current-time indicator === */
+.time-indicator {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #ef4444;
+    z-index: 20;
+    pointer-events: none;
+}
+.time-indicator::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: -4px;
+    width: 10px;
+    height: 10px;
+    background: #ef4444;
+    border-radius: 50%;
+}
+
+/* === Legacy Component Mapping === */
+/* This ensures all older views still use the premium Tailwind design automatically */
+@layer components {
+    /* Cards */
+    .card {
+        @apply bg-white rounded-3xl p-8 shadow-card border border-slate-100 mb-6;
+    }
+    .card-header {
+        @apply flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 border-b border-slate-100 pb-4;
+    }
+    .card-header h3 {
+        @apply text-2xl font-extrabold text-slate-800 tracking-tight flex items-center gap-3;
+    }
+
+    /* Buttons */
+    .btn {
+        @apply inline-flex items-center justify-center gap-2 font-bold py-2.5 px-5 rounded-xl transition-all duration-300;
+    }
+    .btn-primary {
+        @apply bg-ax-500 hover:bg-ax-600 text-white shadow-glow-purple hover:-translate-y-0.5;
+    }
+    .btn-success {
+        @apply bg-emerald-500 hover:bg-emerald-600 text-white hover:-translate-y-0.5 shadow-sm hover:shadow-md;
+    }
+    .btn-danger {
+        @apply bg-rose-500 hover:bg-rose-600 text-white hover:-translate-y-0.5 shadow-sm hover:shadow-md;
+    }
+    .btn-outline {
+        @apply bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm;
+    }
+    .btn-sm {
+        @apply py-1.5 px-3 text-sm rounded-lg;
+    }
+    .action-btns {
+        @apply flex items-center gap-2;
+    }
+
+    /* Tables */
+    .table-container {
+        @apply overflow-x-auto rounded-2xl border border-slate-100;
+    }
+    table {
+        @apply w-full text-left border-collapse;
+    }
+    thead th {
+        @apply bg-slate-50/80 border-b border-slate-100 py-4 px-6 text-xs font-extrabold tracking-wider uppercase text-slate-500;
+    }
+    tbody td {
+        @apply py-4 px-6 text-sm font-medium text-slate-600 border-b border-slate-50;
+    }
+    tbody tr {
+        @apply hover:bg-slate-50/50 transition-colors;
+    }
+    tbody tr:last-child td {
+        @apply border-0;
+    }
+
+    /* Forms */
+    .form-group {
+        @apply mb-5;
+    }
+    .form-group label {
+        @apply block text-sm font-bold text-slate-700 mb-2;
+    }
+    .form-control {
+        @apply w-full bg-slate-50 border border-slate-200 text-slate-800 text-sm rounded-xl focus:ring-ax-500 focus:border-ax-500 block p-3.5 font-medium transition-colors outline-none focus:ring-2 focus:ring-ax-500/20;
+    }
+    select.form-control {
+        @apply appearance-none cursor-pointer;
+    }
+    .form-grid {
+        @apply grid grid-cols-1 md:grid-cols-2 gap-x-6;
+    }
+    .form-actions {
+        @apply mt-8 pt-6 border-t border-slate-100 flex items-center gap-3;
+    }
+
+    /* Badges */
+    .badge {
+        @apply inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-bold border;
+    }
+    .badge-admin {
+        @apply bg-violet-50 text-violet-600 border-violet-100;
+    }
+    .badge-docente {
+        @apply bg-sky-50 text-sky-600 border-sky-100;
+    }
+    .badge-estudiante {
+        @apply bg-emerald-50 text-emerald-600 border-emerald-100;
+    }
+    .badge-pendiente, .badge-retardo {
+        @apply bg-amber-50 text-amber-600 border-amber-100;
+    }
+    .badge-aprobado, .badge-validado, .badge-presente {
+        @apply bg-emerald-50 text-emerald-600 border-emerald-100;
+    }
+    .badge-rechazado, .badge-falta {
+        @apply bg-rose-50 text-rose-600 border-rose-100;
+    }
+
+    /* Empty States */
+    .empty-state {
+        @apply py-12 text-center text-slate-500 bg-slate-50/50 rounded-2xl border-2 border-dashed border-slate-200 mt-4;
+    }
+    .empty-state p {
+        @apply font-medium mt-2;
+    }
+    
+    /* Alerts */
+    .alert {
+        @apply mb-6 p-4 rounded-xl flex items-start gap-3 shadow-sm font-medium border-l-4;
+    }
+    .alert-success {
+        @apply bg-emerald-50 border-emerald-500 text-emerald-800;
+    }
+    .alert-danger {
+        @apply bg-rose-50 border-rose-500 text-rose-800;
+    }
+}
+
+.form-section {
+    display: none;
+    animation: slideDown 0.3s ease;
+}
+.form-section.show {
+    display: block;
+}
